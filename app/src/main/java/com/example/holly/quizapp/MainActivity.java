@@ -1,7 +1,6 @@
 package com.example.holly.quizapp;
 
-import android.support.v7.app.AppCompatActivity;
-
+import com.example.holly.quizapp.R;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,9 +10,21 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.example.holly.quizapp.R;
-
 public class MainActivity extends AppCompatActivity {
+
+    /**
+     * Global strings for the results summary listing
+     */
+    String questionOneResultsSummary;
+    String questionTwoResultsSummary;
+    String questionThreeResultsSummary;
+    String questionFourResultsSummary;
+    String questionFiveResultsSummary;
+    String questionSixResultsSummary;
+    String questionSevenResultsSummary;
+    String questionEightResultsSummary;
+    String questionNineResultsSummary;
+    String questionTenResultsSummary;
 
 
     @Override
@@ -29,8 +40,18 @@ public class MainActivity extends AppCompatActivity {
     public void displayScore(View view) {
         int score = calculateScore();
         String scoreMessage = getString(R.string.final_Score, score);
-        Toast.makeText(this, scoreMessage,
-                Toast.LENGTH_SHORT).show();
+        scoreMessage += "\n" + questionOneResultsSummary;
+        scoreMessage += "\n" + questionTwoResultsSummary;
+        scoreMessage += "\n" + questionThreeResultsSummary;
+        scoreMessage += "\n" + questionFourResultsSummary;
+        scoreMessage += "\n" + questionFiveResultsSummary;
+        scoreMessage += "\n" + questionSixResultsSummary;
+        scoreMessage += "\n" + questionSevenResultsSummary;
+        scoreMessage += "\n" + questionEightResultsSummary;
+        scoreMessage += "\n" + questionNineResultsSummary;
+        scoreMessage += "\n" + questionTenResultsSummary;
+
+        Toast.makeText(this, scoreMessage, Toast.LENGTH_LONG).show();
 
     }
 
@@ -40,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
      * @return score
      */
 
-    private int calculateScore() {
+    public int calculateScore() {
         int score = 0;
 
         //Checks if question one is answered correctly
@@ -50,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (answerQuestionOne) {
             score++;
+            questionOneResultsSummary = getString(R.string.questionOneIsCorrect);
+        } else {
+            questionOneResultsSummary = getString(R.string.questionOneIsWrong);
         }
 
         //Checks if question two is answered correctly
@@ -57,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         CheckBox firstCheckBoxQuestionTwo = (CheckBox) findViewById(R.id.question_Two_First_Ans);
         boolean firstChoiceQuestionTwo = firstCheckBoxQuestionTwo.isChecked();
 
-        CheckBox secondCheckBoxQustionTwo = (CheckBox) findViewById(R.id.question_Two_Second_Ans);
-        boolean secondChoiceQuestionTwo = secondCheckBoxQustionTwo.isChecked();
+        CheckBox secondCheckBoxQuestionTwo = (CheckBox) findViewById(R.id.question_Two_Second_Ans);
+        boolean secondChoiceQuestionTwo = secondCheckBoxQuestionTwo.isChecked();
 
         CheckBox thirdCheckBoxQuestionTwo = (CheckBox) findViewById(R.id.question_Two_Third_Ans);
         boolean thirdChoiceQuestionTwo = thirdCheckBoxQuestionTwo.isChecked();
@@ -66,8 +90,11 @@ public class MainActivity extends AppCompatActivity {
         CheckBox fourthCheckBoxQuestionTwo = (CheckBox) findViewById(R.id.question_Two_Fourth_Ans);
         boolean fourthChoiceQuestionTwo = fourthCheckBoxQuestionTwo.isChecked();
 
-        if (secondChoiceQuestionTwo && fourthChoiceQuestionTwo) {
+        if (!firstChoiceQuestionTwo && secondChoiceQuestionTwo && !thirdChoiceQuestionTwo && fourthChoiceQuestionTwo) {
             score++;
+            questionTwoResultsSummary = getString(R.string.questionTwoIsCorrect);
+        } else {
+            questionTwoResultsSummary = getString(R.string.questionTwoIsWrong);
         }
 
         //Checks if question three is answered correctly
@@ -77,8 +104,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (answerQuestionThree) {
             score++;
+            questionThreeResultsSummary = getString(R.string.questionThreeIsCorrect);
+        } else {
+            questionThreeResultsSummary = getString(R.string.questionThreeIsWrong);
         }
-
         //Checks if question four is answered correctly
 
         RadioButton radioFour = (RadioButton) findViewById(R.id.question_Four_First_Ans);
@@ -86,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (answerQuestionFour) {
             score++;
+            questionFourResultsSummary = getString(R.string.questionFourIsCorrect);
+        } else {
+            questionFourResultsSummary = getString(R.string.questionFourIsWrong);
         }
 
         //Checks if question five is answered correctly
@@ -95,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (answerQuestionFive) {
             score++;
+            questionFiveResultsSummary = getString(R.string.questionFiveIsCorrect);
+        } else {
+            questionFiveResultsSummary = getString(R.string.questionFiveIsWrong);
         }
 
         //Checks if question six is answered correctly
@@ -104,6 +139,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (answerQuestionSix) {
             score++;
+            questionSixResultsSummary = getString(R.string.questionSixIsCorrect);
+        } else {
+            questionSixResultsSummary = getString(R.string.questionSixIsWrong);
         }
 
         //Checks if question seven is answered correctly
@@ -120,8 +158,11 @@ public class MainActivity extends AppCompatActivity {
         CheckBox fourthCheckBoxQuestionSeven = (CheckBox) findViewById(R.id.question_Seven_Fourth_Ans);
         boolean fourthChoiceQuestionSeven = fourthCheckBoxQuestionSeven.isChecked();
 
-        if (thirdChoiceQuestionSeven && fourthChoiceQuestionSeven) {
+        if (!firstChoiceQuestionSeven && !secondChoiceQuestionSeven && thirdChoiceQuestionSeven && fourthChoiceQuestionSeven) {
             score++;
+            questionSevenResultsSummary = getString(R.string.questionSevenIsCorrect);
+        } else {
+            questionSevenResultsSummary = getString(R.string.questionSevenIsWrong);
         }
 
         //Checks if question eight is answered correctly
@@ -131,6 +172,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (userInput.equalsIgnoreCase("memphis")) {
             score++;
+            questionEightResultsSummary = getString(R.string.questionEightIsCorrect);
+        } else {
+            questionEightResultsSummary = getString(R.string.questionEightIsWrong);
         }
 
         //Checks if question nine is answered correctly
@@ -140,6 +184,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (answerQuestionNine) {
             score++;
+            questionNineResultsSummary = getString(R.string.questionNineIsCorrect);
+        } else {
+            questionNineResultsSummary = getString(R.string.questionNineIsWrong);
         }
 
         //Checks if question ten is answered correctly
@@ -149,6 +196,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (answerQuestionTen) {
             score++;
+            questionTenResultsSummary = getString(R.string.questionTenIsCorrect);
+        } else {
+            questionTenResultsSummary = getString(R.string.questionTenIsWrong);
         }
 
         return score;
